@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   class ProfileInputType < Types::BaseInputObject
     argument :fullnames, String, required: false

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   class UpdateProfile < GraphQL::Schema::RelayClassicMutation
     field :profile, Types::UserProfileType, null: false
@@ -18,7 +20,7 @@ module Mutations
             #{invalid.record.errors.full_messages.join(', ')}"
           )
         end
-        
+
       end
     end
   end
