@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Mutations
   class CreateProfile < GraphQL::Schema::RelayClassicMutation
     field :profile, Types::UserProfileType, null: true
-    
+
     argument :profileDetails, Types::ProfileInputType, required: true
 
     def resolve(args)

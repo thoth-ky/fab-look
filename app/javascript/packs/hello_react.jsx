@@ -2,25 +2,31 @@
 // like app/views/layouts/application.html.erb. All it does is render <div>Hello React</div> at the bottom
 // of the page.
 
-import React from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
+import { ApolloProvider } from "react-apollo";
+import { client } from '../constants/index'
 
-const Hello = props => (
-  <div>Hello {props.name}!</div>
-)
-
-Hello.defaultProps = {
-  name: 'David'
-}
-
-Hello.propTypes = {
-  name: PropTypes.string
+class App extends Component {
+  render() {
+    return (
+      <ApolloProvider client={client}>
+        <div className="App">
+          <header>
+            <h2>My Fisrt Rails React-Apollo Monolith App</h2>
+          </header>
+          {/* <Dogs/>
+          <DelayedQuery /> */}
+        </div>
+      </ApolloProvider>
+    );
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Hello name="React" />,
+    <App />,
     document.body.appendChild(document.createElement('div')),
   )
 })

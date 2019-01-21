@@ -11,8 +11,16 @@ module Types
       argument :id, ID, required: true
     end
 
+    field :user, UserType, null: true do
+      argument :id, ID, required: true
+    end
+
     def user_profile(id:)
       UserProfile.find_by(id: id)
+    end
+
+    def user(id:)
+      User.find_by(id: id)
     end
   end
 end

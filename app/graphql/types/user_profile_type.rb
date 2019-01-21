@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   class UserProfileType < Types::BaseObject
     graphql_name 'UserProfile'
