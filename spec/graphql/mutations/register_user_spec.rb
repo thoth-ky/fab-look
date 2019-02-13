@@ -16,7 +16,7 @@ RSpec.describe FabLookSchema do
     res
   end
 
-  describe 'a specific query' do
+  describe 'create user mutation' do
     let(:query_string) do
       %|
       mutation {
