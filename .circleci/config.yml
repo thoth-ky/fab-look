@@ -80,6 +80,5 @@ workflows:
     jobs:
       - build-test
       - deploy:
-          type: approval
           requires:
             - build-test
