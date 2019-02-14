@@ -1,5 +1,6 @@
 # README
-[![CircleCI](https://circleci.com/gh/thoth-ky/fab-look/tree/develop.svg?style=svg)](https://circleci.com/gh/thoth-ky/fab-look/tree/develop)
+[![CircleCI](https://circleci.com/gh/thoth-ky/fab-look/tree/develop.svg?style=svg)](https://circleci.com/gh/thoth-ky/fab-look/tree/develop) [![codebeat badge](https://codebeat.co/badges/515486a2-2d75-4ddf-a874-8a8c0193afff)](https://codebeat.co/projects/github-com-thoth-ky-fab-look-develop)
+
 
 This is a Salon managment app on Ruby on Rails. This application was created as a collaboratve effort with the intention to learn the following technologies in Rails.
 
