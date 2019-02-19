@@ -5,7 +5,7 @@ UserProfile.create(
     {
       fullnames: Faker::Name.name,
       bio: Faker::Lorem.paragraph,
-      avatar: Faker::Internet.url,
+      avatar: nil,
       phonenumber: Faker::PhoneNumber.cell_phone,
       location: "#{Faker::Address.latitude}, #{Faker::Address.longitude}",
       occupation: Faker::Lorem.word,
@@ -14,7 +14,7 @@ UserProfile.create(
     {
       fullnames: Faker::Name.name,
       bio: Faker::Lorem.paragraph,
-      avatar: Faker::Internet.url,
+      avatar: nil,
       phonenumber: Faker::PhoneNumber.cell_phone,
       location: "#{Faker::Address.latitude}, #{Faker::Address.longitude}",
       occupation: Faker::Lorem.word,
