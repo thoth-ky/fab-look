@@ -11,13 +11,16 @@ module Mutations
       if AuthorizeUserHelper.check_auth(context)
         begin
           input = args[:profile_details].to_h
-          input[:user] = context[:current_user]
-          @profile = UserProfile.create!(input)
+          user = User.first # context[:current_user]
+          @profile = UserProfile.find_or_create_by(user_id: user.id)
+          @profile.update_attributes(input.reject{ |_, v| v.blank? })
+
           { profile: @profile }
         rescue ActiveRecord::RecordInvalid => invalid
           GraphQL::ExecutionError.new(
-            "Invalid Attributes for #{invalid.record.class.name}:
-            #{invalid.record.errors.full_messages.join(', ')}"
+            {
+              errors: invalid.record.errors.full_messages
+            }.to_json
           )
         end
       end
