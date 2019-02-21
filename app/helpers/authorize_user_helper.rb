@@ -5,7 +5,7 @@ module AuthorizeUserHelper
     if ctx[:current_user]
       true
     else
-      raise GraphQL::ExecutionError, 'User not signed in'
+      raise GraphQL::ExecutionError, {errors: ['User not signed in']}.to_json
     end
   end
 end
