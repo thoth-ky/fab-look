@@ -6,18 +6,20 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { ApolloProvider } from "react-apollo";
-import { client } from '../constants/index'
-
+import { client } from '../../constants/index'
+import ProfileComponent from './components/ProfileComponent';
 class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
         <div className="App">
           <header>
-            <h2>My Fisrt Rails React-Apollo Monolith App</h2>
+            <h1>Fab Look</h1>
+            <h3>-----------------NAV BAR HERE------------------------------</h3>
           </header>
-          {/* <Dogs/>
-          <DelayedQuery /> */}
+          <div className="Body">
+            <ProfileComponent />
+          </div>
         </div>
       </ApolloProvider>
     );
