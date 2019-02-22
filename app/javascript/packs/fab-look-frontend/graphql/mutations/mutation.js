@@ -1,22 +1,7 @@
 import gql from "graphql-tag";
 
-// export const CREATE_PROFILE = gql`
-//   mutation CreateProfile($fullnames: String!, $bio: String!, $website: String!){
-//     createProfile(fullnames: $fullnames, bio: $bio, website: $website){
-//       id
-//       fullnames
-//       bio
-//       website
-//       occupation
-//     }
-//   }
-// `;
-// website: website,
-//         occupation: occupation,
-//         phonenumber: phonenumber,
-
 export const CREATE_PROFILE = gql`
-  mutation CreateProfile($fullnames: String, $bio: String, $website: String, $occupation: String, $phonenumber: String){
+  mutation CreateProfile($fullnames: String, $bio: String, $website: String, $occupation: String, $phonenumber: String, $avatar: File ){
     createProfile(
       input: {
         profileDetails: {
@@ -25,6 +10,7 @@ export const CREATE_PROFILE = gql`
           website: $website
           occupation: $occupation
           phonenumber: $phonenumber
+          avatar: $avatar
         }
       }
 
@@ -32,6 +18,8 @@ export const CREATE_PROFILE = gql`
       profile {
         id
         fullnames
+        avatar
+        bio
         user {
           id
           email

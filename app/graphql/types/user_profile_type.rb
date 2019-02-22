@@ -2,8 +2,8 @@
 
 module Types
   class UserProfileType < Types::BaseObject
+    include Rails.application.routes.url_helpers
     graphql_name 'UserProfile'
-    # description "Fetches a User profile"
 
     field :id, ID, null: false
     field :fullnames, String, null: true
@@ -19,5 +19,10 @@ module Types
     def user
       object.user
     end
+
+    def avatar
+      rails_blob_path(object.avatar, only_path: true)
+    end
+
   end
 end
