@@ -1,0 +1,36 @@
+html, body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+form {
+  div.fieldGroup {
+    padding: 20px;
+
+    input, label {
+      width: 100%;
+      display: block;
+      text-transform: capitalize;
+      height: 22px;
+    }
+
+    button.btn {
+      background-color: blue;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: white;
+      font-weight: 500;
+      line-height: 22px;
+    }
+  }
+}
+
+
+ul.errors {
+  color: #D8000C;
+  background-color: #FFD2D2;
+  margin:10px 22px;
+  vertical-align:middle;
+}
