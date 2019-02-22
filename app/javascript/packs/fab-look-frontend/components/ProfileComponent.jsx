@@ -11,7 +11,6 @@ class ProfileComponent extends Component {
 
   handleFormSubmit = ( props ) => {
     // get data from state
-    
     let { createProfile} = props;
     let { 
       selectedFile,
@@ -22,7 +21,6 @@ class ProfileComponent extends Component {
       phonenumber,
     } = this.state
     
-    console.log('fullname>>', fullnames)
     createProfile({
       variables: {
         fullnames: fullnames,
@@ -30,14 +28,18 @@ class ProfileComponent extends Component {
         website: website,
         occupation: occupation,
         phonenumber: phonenumber,
+        avatar: selectedFile
       }
     })
-    .then((data)=>{
+    .then((response)=>{
       alert('success')
+      const { data } = response
+      this.setState({
+        avatar_url: data.createProfile.profile.avatar_url
+      })
       // update cache 
     })
     .catch((e)=> {
-      // debugger
       let messages = JSON.parse(e.graphQLErrors[0].message)
       this.setState({
         errorMessages : messages.errors
@@ -72,58 +74,25 @@ class ProfileComponent extends Component {
     const button = [
       { type: "submit", value: "Submit", class: "btn btn-primary" },
     ]
+
+    const title = "User Profile Update"
+
     return (
-        <Form submitCallback={this.handleFormSubmit} fields={fields} button={button}/>
-    )
-    return (
-      <Mutation mutation={CREATE_PROFILE}>
+      <Mutation
+        mutation={CREATE_PROFILE}
+        context={{ hasUpload: true }}
+      >
       {(createProfile) => (
         
         <div className="form">
-          <h3>User Profile</h3>
+          
           <DisplayErrors errors={this.state.errorMessages}/>
-          <form onSubmit={ e => {
-            e.preventDefault()
-            this.handleFormSubmit({ createProfile}) 
-            }
-          } id="user-profile-form">
-          <div className="fieldGroup">
-                <label htmlFor="fullnames"> Full Names: </label>
-                <input type="text" field="fullnames" id="fullnames" onChange={this.handleChange}/>
-              </div>
-
-              <div className="fieldGroup">
-                <label htmlFor="avatar"> Avatar: </label>
-                <input type="file" field="avatar" id="avatar" onChange={this.handleSelectedFile}/>
-              </div>
-
-              <div className="fieldGroup">
-                <label htmlFor="bio"> Bio: </label>
-                <textarea field="bio" id="bio" cols="60" rows="10" onChange={this.handleChange}/>
-              </div>
-
-              <div className="fieldGroup">
-                <label htmlFor="phonenumber"> Phone Number: </label>
-                <input type="text" field="phonenumber" id="phonenumber" onChange={this.handleChange}/>
-              </div>
-
-              <div className="fieldGroup">
-                <label htmlFor="occupation"> Occupation: </label>
-                <input type="text" field="occupation" id="occupation" onChange={this.handleChange}/>
-              </div>
-
-              <div className="fieldGroup">
-                <label htmlFor="website"> Website: </label>
-                <input type="text" field="website" id="website" onChange={this.handleChange}/>
-              </div>
-              
-              <div className="fieldGroup">
-                <button type="submit" className="btn btn-primary">
-                  SUBMIT
-                </button>
-              </div>
-
-          </form>
+          <Form
+            submitCallback={this.handleFormSubmit}
+            createProfile={createProfile}
+            fields={fields}
+            button={button}
+            title={title}/>
         </div>
       )}
       </Mutation>

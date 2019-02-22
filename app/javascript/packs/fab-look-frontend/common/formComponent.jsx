@@ -27,7 +27,6 @@ class Form extends Component {
 
   buttonField = () => {
     const { button } = this.props
-    console.log(button)
     return (
       <div className="fieldGroup">
         <button type={button[0].type} className={button[0].class} >
@@ -45,13 +44,18 @@ class Form extends Component {
   }
 
   render() { 
-    let { submitCallback } = this.props
-    return ( 
-        <form onSubmit={submitCallback}>
+    let { submitCallback, title, createProfile } = this.props
+    return (
+      <div>
+        <h3>{title}</h3>
+        <form onSubmit={ e => {
+            e.preventDefault()
+            submitCallback({ createProfile })
+            }}>
           <this.inputFields />
           <this.buttonField />
         </form>
-      
+      </div>  
      );
   }
 }
